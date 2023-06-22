@@ -38,18 +38,13 @@ By default, the meaning checker deems a line meaningful if it contains 30% meani
 
 Let's assume we have the following text file called test.txt:
 
-`txt
-asdasd a dasd ajnafan oas
-n00bz d0n'7 w1n!
-this is a normal line.
-da kadma akj ad
-`
+    asdasd a dasd ajnafan oas
+    n00bz d0n'7 w1n!
+    this is a normal line.
+    da kadma akj ad
 
 Running the following command on the said text file results in:
 
-`shell
-$ cat test.txt | meaningsearch -t 0.5
-n00bz d0n'7 w1n!
-this is a normal line.
-`
-
+    $ cat test.txt | meaningsearch -t 0.5
+    n00bz d0n'7 w1n!
+    this is a normal line.
