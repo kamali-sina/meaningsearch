@@ -8,7 +8,7 @@ readme = "README.md"
 homepage = "https://github.com/kamali-sina/meaningsearch"
 repository = "https://github.com/kamali-sina/meaningsearch"
 license = "MIT"
-keywords = ["search", "meaning search", "ctf"]
+keywords = ["search", "meaningsearch", "ctf", "tool"]
 categories = ["command-line-utilities", "text-processing", "algorithms"]
 
 
