@@ -1,6 +1,6 @@
 [package]
 name = "meaningsearch"
-version = "0.1.0"
+version = "0.1.3"
 edition = "2021"
 authors = ["Sina <sininoir@gmail.com>"]
 description = "A simple package that helps you find meaningful lines of any given input. Especially useful in CTFs."
