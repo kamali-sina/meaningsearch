@@ -2,7 +2,7 @@
 
 A simple package that helps you find meaningful lines of any given input. Especially useful in CTFs.
 
-Meaning search supports Leet and can detect even obsfucated meaningful texts.
+Meaning search supports Leet and can detect even obfuscated meaningful texts.
 
 ## How to install
 
