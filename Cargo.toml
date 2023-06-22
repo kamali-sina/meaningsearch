@@ -8,8 +8,8 @@ readme = "README.md"
 homepage = "https://github.com/kamali-sina/meaningsearch"
 repository = "https://github.com/kamali-sina/meaningsearch"
 license = "MIT"
-keywords = ["search", "meaningsearch", "ctf"]
-categories = ["command-line-utilities", "searcher", "ctf"]
+keywords = ["search", "meaning search", "ctf"]
+categories = ["command-line-utilities", "text-processing", "algorithms"]
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
