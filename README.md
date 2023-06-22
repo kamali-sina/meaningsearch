@@ -16,7 +16,7 @@ You can use the command below to run meaning search. End your input with ctrl + 
 
     meaningsearch <options>
 
-You can also find meaningful lines in the output of a bin using :
+You can also find meaningful lines in the output of a bin using:
 
     cat <somefile> | meaningsearch <options>
 
