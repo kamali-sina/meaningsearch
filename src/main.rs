@@ -10,21 +10,21 @@ struct Opt {
     #[structopt(short, long, parse(from_os_str))]
     file: Option<PathBuf>,
 
-    /// The threshhold for meaning checking
+    /// The threshold for meaning checking
     #[structopt(short, long, default_value = "0.3")]
-    threshhold: f32,
+    threshold: f32,
 }
 
 fn main() {
     let opt = Opt::from_args();
-    let threshhold: f32 = opt.threshhold;
+    let threshold: f32 = opt.threshold;
 
     if opt.file.is_none() {
         let input = get_input();
-        print_meaningful_lines(&input, &threshhold);
+        print_meaningful_lines(&input, &threshold);
     } else {
         let input = fs::read_to_string(opt.file.unwrap()).unwrap();
-        print_meaningful_lines(&input, &threshhold);
+        print_meaningful_lines(&input, &threshold);
     }
 }
 
@@ -35,18 +35,18 @@ fn get_input() -> String {
     return input;
 }
 
-fn print_meaningful_lines(input: &String, threshhold: &f32) {
+fn print_meaningful_lines(input: &String, threshold: &f32) {
     let lines: Vec<&str> = input.split('\n').collect();
     let meaningfulwords: Vec<&str> = WORDLIST.split('\n').collect();
 
     for line in lines {
-        if line_has_meaning(line, &meaningfulwords, threshhold) {
+        if line_has_meaning(line, &meaningfulwords, threshold) {
             println!("{line}");
         }
     }
 }
 
-fn line_has_meaning(line: &str, meaningfulwords: &Vec<&str>, threshhold: &f32) -> bool {
+fn line_has_meaning(line: &str, meaningfulwords: &Vec<&str>, threshold: &f32) -> bool {
     let mut meaning_lenght = 0;
     for word in meaningfulwords {
         if line.contains(word) {
@@ -54,7 +54,7 @@ fn line_has_meaning(line: &str, meaningfulwords: &Vec<&str>, threshhold: &f32) -
         }
     }
 
-    if (meaning_lenght as f32 / line.len() as f32) > *threshhold {
+    if (meaning_lenght as f32 / line.len() as f32) > *threshold {
         return true;
     }
 
