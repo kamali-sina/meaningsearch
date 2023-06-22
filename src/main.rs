@@ -1,15 +1,11 @@
 use std::io::{self, BufRead};
 
 const WORDLIST:&str = include_str!("./meaningfullwordlist.txt");
+const THRESHHOLD: f32 = 0.3;
 
 fn main() {
     let input = get_input();
-    let lines = input.split('\n');
-    let meaningfullwords = WORDLIST.split('\n');
-
-    for line in lines {
-        println!("{line}");
-    }
+    print_meaningful_lines(&input);
 }
 
 fn get_input() -> String {
@@ -19,9 +15,28 @@ fn get_input() -> String {
     return input;
 }
 
+fn print_meaningful_lines(input: &String) {
+    let lines: Vec<&str> = input.split('\n').collect();
+    let meaningfulwords: Vec<&str> = WORDLIST.split('\n').collect();
 
-// if output_in_binary.find(stop_word_in_binary.as_str()) == None {
-//     _error("Could not find an embedded message in the image");
-//     exit(1);
-// }
-// output_in_binary = output_in_binary[..output_in_binary.find(stop_word_in_binary.as_str()).unwrap()].to_string();
+    for line in lines {
+        if line_has_meaning(line, &meaningfulwords) {
+            println!("{line}");
+        }
+    }
+}
+
+fn line_has_meaning(line: &str, meaningfulwords: &Vec<&str>) -> bool {
+    let mut meaning_lenght = 0;
+    for word in meaningfulwords {
+        if line.contains(word) {
+            meaning_lenght += word.len();
+        }
+    }
+
+    if (meaning_lenght as f32 / line.len() as f32) > THRESHHOLD {
+        return true;
+    }
+
+    return false;
+}
