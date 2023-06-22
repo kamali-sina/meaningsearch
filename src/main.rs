@@ -1,11 +1,31 @@
-use std::io::{self, BufRead};
+use std::{io::{self, BufRead}, path::PathBuf, fs};
+use structopt::{StructOpt};
 
 const WORDLIST:&str = include_str!("./meaningfullwordlist.txt");
-const THRESHHOLD: f32 = 0.3;
+
+#[derive(StructOpt, Debug)]
+#[structopt(name = "meaningcheck")]
+struct Opt {
+    /// Use this to meaning check a file
+    #[structopt(short, long, parse(from_os_str))]
+    file: Option<PathBuf>,
+
+    /// The threshhold for meaning checking
+    #[structopt(short, long, default_value = "0.3")]
+    threshhold: f32,
+}
 
 fn main() {
-    let input = get_input();
-    print_meaningful_lines(&input);
+    let opt = Opt::from_args();
+    let threshhold: f32 = opt.threshhold;
+
+    if opt.file.is_none() {
+        let input = get_input();
+        print_meaningful_lines(&input, &threshhold);
+    } else {
+        let input = fs::read_to_string(opt.file.unwrap()).unwrap();
+        print_meaningful_lines(&input, &threshhold);
+    }
 }
 
 fn get_input() -> String {
@@ -15,18 +35,18 @@ fn get_input() -> String {
     return input;
 }
 
-fn print_meaningful_lines(input: &String) {
+fn print_meaningful_lines(input: &String, threshhold: &f32) {
     let lines: Vec<&str> = input.split('\n').collect();
     let meaningfulwords: Vec<&str> = WORDLIST.split('\n').collect();
 
     for line in lines {
-        if line_has_meaning(line, &meaningfulwords) {
+        if line_has_meaning(line, &meaningfulwords, threshhold) {
             println!("{line}");
         }
     }
 }
 
-fn line_has_meaning(line: &str, meaningfulwords: &Vec<&str>) -> bool {
+fn line_has_meaning(line: &str, meaningfulwords: &Vec<&str>, threshhold: &f32) -> bool {
     let mut meaning_lenght = 0;
     for word in meaningfulwords {
         if line.contains(word) {
@@ -34,7 +54,7 @@ fn line_has_meaning(line: &str, meaningfulwords: &Vec<&str>) -> bool {
         }
     }
 
-    if (meaning_lenght as f32 / line.len() as f32) > THRESHHOLD {
+    if (meaning_lenght as f32 / line.len() as f32) > *threshhold {
         return true;
     }
 
