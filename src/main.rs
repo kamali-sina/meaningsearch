@@ -40,7 +40,7 @@ fn print_meaningful_lines(input: &String, threshold: &f32) {
     let meaningfulwords: Vec<&str> = WORDLIST.split('\n').collect();
 
     for line in lines {
-        if line_has_meaning(line, &meaningfulwords, threshold) {
+        if line_has_meaning(&line.to_lowercase(), &meaningfulwords, threshold) {
             println!("{line}");
         }
     }
