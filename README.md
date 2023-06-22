@@ -2,6 +2,8 @@
 
 A simple package that helps you find meaningful lines of any given input. Especially useful in CTFs.
 
+Meaning search supports Leet and can detect even obsfucated meaningful texts.
+
 ## How to install
 
 Simply run:
@@ -31,3 +33,23 @@ You can use the 'file' flag to meaning search a file:
 By default, the meaning checker deems a line meaningful if it contains 30% meaningful content. You can use the 'threshold' flag to specify a different threshold for your meaning checker. In the following example, we specify a threshold of 80%:
 
     cat <somefile> | meaningsearch -t 0.8
+
+## Example
+
+Let's assume we have the following text file called test.txt:
+
+`txt
+asdasd a dasd ajnafan oas
+n00bz d0n'7 w1n!
+this is a normal line.
+da kadma akj ad
+`
+
+Running the following command on the said text file results in:
+
+`shell
+$ cat test.txt | meaningsearch -t 0.5
+n00bz d0n'7 w1n!
+this is a normal line.
+`
+
