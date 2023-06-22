@@ -1,4 +1,4 @@
-use std::{io::{self, BufRead}, path::PathBuf, process::exit};
+use std::{io::{self, BufRead}, path::PathBuf, fs};
 use structopt::{StructOpt};
 
 const WORDLIST:&str = include_str!("./meaningfullwordlist.txt");
@@ -18,11 +18,13 @@ struct Opt {
 fn main() {
     let opt = Opt::from_args();
     let threshhold: f32 = opt.threshhold;
+
     if opt.file.is_none() {
         let input = get_input();
         print_meaningful_lines(&input, &threshhold);
     } else {
-
+        let input = fs::read_to_string(opt.file.unwrap()).unwrap();
+        print_meaningful_lines(&input, &threshhold);
     }
 }
 
