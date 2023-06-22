@@ -12,10 +12,22 @@ to install the package.
 
 ## How to use
 
-You can encode an image using the command below:
+You can use the command below to run meaning search. End your input with ctrl + D.
 
-    stegomage -e -i <path-to-image>
+    meaningsearch <options>
 
-And you can decode an image using this command:
+You can also find meaningful lines in the output of a bin using :
 
-    stegomage -d -i <path-to-image>
+    cat <somefile> | meaningsearch <options>
+
+### --file
+
+You can use the 'file' flag to meaning search a file:
+
+    meaningseach --file <path to file>
+
+### --threshhold
+
+By default the meaning checker deems a line meaningful if it contains at 30% meaningful content. You can use the 'threshhold' flag to specify a different threshhold for your meaning checker. In the following example we specify a threshhold of 80%:
+
+    cat <somefile> | meaningsearch -t 0.8
