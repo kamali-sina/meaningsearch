@@ -2,7 +2,17 @@
 name = "meaningsearch"
 version = "0.1.0"
 edition = "2021"
+authors = ["Sina <sininoir@gmail.com>"]
+description = "A simple package that helps you find meaningful lines of any given input. Especially useful in CTFs."
+readme = "README.md"
+homepage = "https://github.com/kamali-sina/meaningsearch"
+repository = "https://github.com/kamali-sina/meaningsearch"
+license = "MIT"
+keywords = ["search", "meaningsearch", "ctf"]
+categories = ["command-line-utilities", "searcher", "ctf"]
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+structopt = "0.3.26"
